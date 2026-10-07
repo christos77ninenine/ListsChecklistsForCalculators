@@ -88,7 +88,7 @@ def mn():
  gc.collect()
  L,a=ld()
  if not L:L=[["School",[["Math",0],["Physics",0]]],["Personal",[["Gym",0]]]];a=0
- md=0
+ md=1
  while 1:
   if md:sl(L,a)
   else:sh(L,a)
