@@ -41,7 +41,7 @@ def sh(L,a):
  print(D)
  if not t:print("  (empty)")
  for i in range(n):print(str(i+1)+". ["+("X"if t[i][1]else" ")+"] "+t[i][0][:16])
- print(D+"\n1-9:chk +:add D:del\nE:edt R:rst C:clr\nL:lst       Q:quit")
+ print(D+"\n1-9:chk A:add D:del\nE:edt R:rst C:clr\nL:lst       Q:quit")
 def sl(L,a):
  cl();print(E+"\n     SELECT LIST\n"+D)
  for i in range(len(L)):
@@ -66,7 +66,7 @@ def kl(L,a,c):
 def kt(L,a,c):
  t=L[a][1];n=len(t);i=ix(c,n)
  if c=="l":return 1
- if c=="+":
+ if c=="a":
   w=P("New:")
   if not w:return 0
   t.append([w,0])
