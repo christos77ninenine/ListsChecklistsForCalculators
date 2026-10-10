@@ -35,7 +35,7 @@ def ix(i,n):
  return int(i)-1 if i.isdigit() and 0<int(i)<=n else -1
 def sh(L,a):
  t=L[a][1];n=len(t);d=sum([x[1]for x in t]);cl()
- print(E+"\n "+L[a][0][:10]+" ("+str(a+1)+"/"+str(len(L))+")")
+ print(E+"\n "+L[a][0])
  f=int(16*d/n)if n else 0
  print(" "+str(d)+"/"+str(n)+(" ["+"#"*f+"-"*(16-f)+"]"if n else""))
  print(D)
