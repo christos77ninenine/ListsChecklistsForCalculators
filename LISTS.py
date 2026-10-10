@@ -34,20 +34,20 @@ def P(p):
 def ix(i,n):
  return int(i)-1 if i.isdigit() and 0<int(i)<=n else -1
 def sh(L,a):
- t=L[a][1];n=len(t);d=sum([x[1]for x in t]);cl()
+ t=L[a][1];n=len(t);d=sum(x[1]for x in t);cl()
  print(E+"\n "+L[a][0])
  f=int(16*d/n)if n else 0
  print(" "+str(d)+"/"+str(n)+(" ["+"#"*f+"-"*(16-f)+"]"if n else""))
  print(D)
  if not t:print("  (empty)")
  for i in range(n):print(str(i+1)+". ["+("X"if t[i][1]else" ")+"] "+t[i][0][:16])
- print(D+"\n1-9:chk A:add D:del\nE:edt R:rst C:clr\nL:lst       Q:quit")
+ print(D+"\n1-9:chk A:add D:del\nE:edt R:rst C:clr\nL:lst   Q:quit")
 def sl(L,a):
- cl();print(E+"\n     SELECT LIST\n"+D)
- for i in range(len(L)):
+ n=len(L);cl();print(E+"\n     SELECT LIST\n"+D)
+ for i in range(n):
   k=L[i][1]
-  print(str(i+1)+"."+("*"if i==a else" ")+L[i][0][:10]+" ("+str(sum([x[1]for x in k]))+"/"+str(len(k))+")")
- print(D+"\n1-"+str(len(L))+":sel +:new R:ren\nD:del B:back")
+  print(str(i+1)+"."+("*"if i==a else" ")+L[i][0][:10]+" ("+str(sum(x[1]for x in k))+"/"+str(len(k))+")")
+ print(D+"\n1-"+str(n)+":sel +:new R:ren\nD:del B:back")
 def kl(L,a,c):
  n=len(L);i=ix(c,n)
  if c=="b":return a,0
@@ -60,7 +60,7 @@ def kl(L,a,c):
   if w:L[i][0]=w[:16];sv(L,a)
  elif c=="d":
   i=ix(P("#:"),n)
-  if n>1 and i>=0:L.pop(i);a=min(a,n-2);sv(L,a)
+  if n>1 and i>=0 and P("Delete? (y/n):")[:1].lower()=="y":L.pop(i);a=min(a,n-2);sv(L,a)
  elif i>=0:sv(L,i);return i,0
  return a,1
 def kt(L,a,c):
