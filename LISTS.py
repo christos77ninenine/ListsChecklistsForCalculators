@@ -36,31 +36,29 @@ def ix(i,n):
 def sh(L,a):
  t=L[a][1];n=len(t);d=sum(x[1]for x in t);cl()
  print(E+"\n "+L[a][0])
- f=int(16*d/n)if n else 0
- print(" "+str(d)+"/"+str(n)+(" ["+"#"*f+"-"*(16-f)+"]"if n else""))
+ f=16*d//max(n,1)
+ print(" %d/%d"%(d,n)+(" ["+"#"*f+"-"*(16-f)+"]"if n else""))
  print(D)
  if not t:print("  (empty)")
- for i in range(n):print(str(i+1)+". ["+("X"if t[i][1]else" ")+"] "+t[i][0][:16])
+ for i in range(n):w=t[i][0];print(str(i+1)+". ["+" X"[t[i][1]]+"] "+"\n       ".join(w[j:j+18]for j in range(0,len(w),18)))
  print(D+"\n1-9:chk A:add D:del\nE:edt R:rst C:clr\nL:lst   Q:quit")
 def sl(L,a):
  n=len(L);cl();print(E+"\n     SELECT LIST\n"+D)
- for i in range(n):
-  k=L[i][1]
-  print(str(i+1)+"."+("*"if i==a else" ")+L[i][0][:10]+" ("+str(sum(x[1]for x in k))+"/"+str(len(k))+")")
+ for i in range(n):k=L[i][1];print(str(i+1)+"."+" *"[i==a]+L[i][0][:15]+" (%d/%d)"%(sum(x[1]for x in k),len(k)))
  print(D+"\n1-"+str(n)+":sel +:new R:ren\nD:del B:back")
 def kl(L,a,c):
  n=len(L);i=ix(c,n)
  if c=="b":return a,0
  if c=="+":
   w=P("Name:")
-  if w:L.append([w[:16],[]]);sv(L,n);return n,0
+  if w:L.append([w[:15],[]]);sv(L,n);return n,0
  elif c in"re":
   i=ix(P("#:"),n)
   w=i>=0 and P("New:")
-  if w:L[i][0]=w[:16];sv(L,a)
+  if w:L[i][0]=w[:15];sv(L,a)
  elif c=="d":
   i=ix(P("#:"),n)
-  if n>1 and i>=0 and P("Delete? (y/n):")[:1].lower()=="y":L.pop(i);a=min(a,n-2);sv(L,a)
+  if n>1 and i>=0 and P("Del? y/n:")[:1].lower()=="y":L.pop(i);a=min(a,n-2);sv(L,a)
  elif i>=0:sv(L,i);return i,0
  return a,1
 def kt(L,a,c):
